@@ -1,12 +1,14 @@
 import React from 'react';
 import Banner from '../Banner/Banner';
 import Category from '../Category/Category';
+import PopularMenu from '../PopularMenu/PopularMenu';
 
 const Home = () => {
     return (
       <div className="" >
         <Banner></Banner>
-        <Category></Category>
+            <Category></Category>
+            <PopularMenu></PopularMenu>
       </div>
     );
 };
