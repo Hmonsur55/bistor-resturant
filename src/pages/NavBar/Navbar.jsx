@@ -35,13 +35,13 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow max-sm:bg-[#65280b] rounded-box w-52"
               >
                 {menuItems}
               </ul>
             </div>
-            <div className=''>
-                        <a className="btn btn-ghost normal-case text-xl">Bistor</a>
+            <div className="">
+              <a className="btn btn-ghost normal-case text-xl">Bistor</a>
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">

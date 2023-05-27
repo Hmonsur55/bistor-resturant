@@ -4,7 +4,7 @@ const ItemsCard = ({ item }) => {
     <div className="flex  space-x-5 ">
       <img
         style={{ borderRadius: "0px 200px 200px 200px" }}
-        className="w-[105px]"
+        className="w-[105px] "
         src={image}
         alt=""
       />

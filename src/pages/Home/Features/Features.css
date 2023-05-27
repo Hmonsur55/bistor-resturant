@@ -1,0 +1,4 @@
+.feature-img{
+    background-image: url('../../../assets/home/banner.jpg');
+    background-blend-mode: darken;
+}
