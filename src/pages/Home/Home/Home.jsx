@@ -4,10 +4,10 @@ import Category from '../Category/Category';
 
 const Home = () => {
     return (
-        <div>
-            <Banner></Banner>
-            <Category></Category>
-        </div>
+      <div className="" >
+        <Banner></Banner>
+        <Category></Category>
+      </div>
     );
 };
 
