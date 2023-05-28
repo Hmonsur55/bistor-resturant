@@ -2,20 +2,24 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
+import useMenu from '../../../hooks/useMenu';
 import ItemsCard from '../../SharePage/PopularItems/ItemsCard';
 
 const PopularMenu = () => {
-    const [menu, setMenu] = useState([]);
-    useEffect(() => {
-        fetch('menu.json')
-            .then(res => res.json())
-            .then(data => {
-                const popularItems = data.filter(
-                  (items) => items.category === "popular"
-                );
-              setMenu(popularItems);
-            })
-    }, [])
+    const [menu] = useMenu();
+    const popular = menu.filter((items) => items.category === "popular");
+
+    // const [menu, setMenu] = useState([]);
+    // useEffect(() => {
+    //     fetch('menu.json')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             const popularItems = data.filter(
+    //               (items) => items.category === "popular"
+    //             );
+    //           setMenu(popularItems);
+    //         })
+    // }, [])
     
     console.log(menu)
     return (
@@ -25,7 +29,7 @@ const PopularMenu = () => {
           heading={"Popular Menu"}
         ></SectionTitle>
         <div className='grid md:grid-cols-2 gap-10 sm: px-5'>
-          {menu.map((item) => (
+          {popular.map((item) => (
             <ItemsCard key={item._id} item={item}></ItemsCard>
           ))}
         </div>

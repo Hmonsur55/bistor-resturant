@@ -10,7 +10,7 @@ const Features = () => {
           subheading={"Check it out"}
           heading={"From Our Menu"}
         ></SectionTitle>
-        <div className="flex  items-center pb-16">
+        <div className="flex max-sm:flex-col items-center pb-16">
           <div>
             <img src={featuresimg} alt="" />
           </div>
@@ -23,7 +23,7 @@ const Features = () => {
               facere obcaecati dolores doloribus animi porro incidunt a officia
               perspiciatis at blanditiis expedita.
             </p>
-            <button className="btn btn-outline">Order Now</button>
+            <button className="btn btn-outline border-0 border-b-4">Order Now</button>
           </div>
         </div>
       </div>

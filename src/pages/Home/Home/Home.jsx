@@ -4,15 +4,18 @@ import Category from '../Category/Category';
 import Features from '../Features/Features';
 import PopularMenu from '../PopularMenu/PopularMenu';
 import Testimonial from '../Testimonial/Testimonial';
-
+import { Helmet, } from "react-helmet-async";
 const Home = () => {
     return (
-      <div className="" >
+      <div className="">
+        <Helmet>
+          <title>Bistro | Home</title>
+        </Helmet>
         <Banner></Banner>
-            <Category></Category>
-            <PopularMenu></PopularMenu>
-            <Features></Features>
-            <Testimonial></Testimonial>
+        <Category></Category>
+        <PopularMenu></PopularMenu>
+        <Features></Features>
+        <Testimonial></Testimonial>
       </div>
     );
 };
