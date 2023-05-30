@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 const Registration = () => {
     const  [success, setSuccess] =useState('')
     const  [error, setError] =useState('')
-  const { createUser } = useContext(authContext);
+  const { createUser, updateProfileUser } = useContext(authContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -25,9 +25,16 @@ const Registration = () => {
          
          createUser(email, password)
              .then(result => {
-                 const logUser = result.user;
-               Swal.fire("User Has been Create Successfully");
-               navigate(from, { replace: true });
+               const logUser = result.user;
+               updateProfileUser(data.name, data.photo)
+                 .then(() => {
+                   Swal.fire("User Has been Create Successfully");
+                 })
+                 .catch((error) => {
+                   console.log(error)
+                 });
+               
+              //  navigate(from, { replace: true });
              }).catch(error => {
              setError(error)
          }).catch()
@@ -56,6 +63,15 @@ const Registration = () => {
                 />
                 {errors.name && (
                   <span className="text-red">This field is required</span>
+                )}
+              </div>
+              <div>
+                <input
+                  placeholder="Photo Url"
+                  {...register("photo", { required: true })}
+                />
+                {errors.photo && (
+                  <span className="text-red">Photo Url is required</span>
                 )}
               </div>
 

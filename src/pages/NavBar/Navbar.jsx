@@ -1,8 +1,10 @@
 
+// import { data } from 'autoprefixer';
+import { FaShoppingCart } from "react-icons/fa";
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../AuthProvider/AuthProvider';
-
+import imglogo from '../../assets/others/profile.png'
 const Navbar = () => {
   const { user, logOut, loading } = useContext(authContext);
   if (loading) {
@@ -31,22 +33,29 @@ console.log(user)
           <Link to="/order/salad">Order Food</Link>
         </li>
         <li>
-          <Link to="/secrate">secrate</Link>
+          <Link to="/secrate">Secrate</Link>
         </li>
-
-        {user ? (
-          <>
-            <button onClick={handleLogout} className="btn btn-ghost">
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-          </>
-        )}
+        <li>
+          {user ? (
+            <>
+              <button onClick={handleLogout} className="capitalize btn btn-ghost">
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            </>
+          )}
+        </li>
+        <li className='items-center'>
+          <button className="btn gap-4">
+            <FaShoppingCart></FaShoppingCart>
+            <div className="badge badge-secondary">+0</div>
+          </button>
+        </li>
       </>
     );
 
@@ -86,7 +95,19 @@ console.log(user)
             <ul className="menu menu-horizontal px-1">{menuItems}</ul>
           </div>
           <div className="navbar-end">
-            <a className="btn">Login</a>
+            {user ? (
+              <>
+                <img
+                  className="w-16 rounded-full"
+                  src={user?.photoURL}
+                  alt=""
+                />
+              </>
+            ) : (
+              <>
+                <img className="w-16 rounded-full" src={imglogo} alt="" />
+              </>
+            )}
           </div>
         </div>
       </div>
