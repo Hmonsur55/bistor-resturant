@@ -10,17 +10,19 @@ import {
 } from "react-simple-captcha";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { authContext } from "../../AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 const Login = () => {
-    const {signIn} =useContext(authContext)
+    const { signIn, googleSignIn } = useContext(authContext);
      const [success, setSuccess] = useState("");
      const [error, setError] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const capthaRef = useRef(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -33,7 +35,9 @@ const Login = () => {
       signIn(email, password)
           .then(result => {
               const logUser = result.user;
-              setSuccess('You have successfully login')
+              console.log(logUser)
+            Swal.fire("User Login Successfully");
+            navigate(from, { replace: true });
           })
           .catch(error => {
           setError(error.message)
@@ -46,14 +50,25 @@ const Login = () => {
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
-    const handleCapthca = () => {
-        const user_captcha_value = capthaRef.current.value;
+    const handleCapthca = (e) => {
+        const user_captcha_value = e.target.value;
         console.log(user_captcha_value)
         if (validateCaptcha(user_captcha_value) == true) {
          setDisabled(false);
         } else {
           setDisabled(true)
         }
+  };
+
+  const googleLogin = () => {
+    googleSignIn()
+      .then((result) => {
+        const looginUser = result.user;
+         navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setError(error);
+      });
   };
   return (
     <section
@@ -74,10 +89,10 @@ const Login = () => {
             <h3 className="text-center text-4xl mb-5">Login </h3>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
+            {/* <div>
               <label className="block mt-[-10px] text-black">Name</label>
               <input placeholder="Type here" {...register("name")} />
-            </div>
+            </div> */}
 
             <input
               placeholder="Email"
@@ -87,16 +102,11 @@ const Login = () => {
             <div>
               <LoadCanvasTemplate />
               <input
-                ref={capthaRef}
+                onBlur={handleCapthca}
                 type="text"
                 placeholder="Type above text"
               />
-              <input
-                onClick={handleCapthca}
-                type="checkbox"
-                checked="checked"
-                className="checkbox"
-              />
+              <input type="checkbox" checked="checked" className="checkbox" />
             </div>
             <input
               placeholder="password"
@@ -118,6 +128,9 @@ const Login = () => {
           <p>
             Do not Have Account <Link to="/register">Register</Link>
           </p>
+          <button onClick={googleLogin} className="btn btn-accent">
+            google
+          </button>
         </div>
       </div>
     </section>

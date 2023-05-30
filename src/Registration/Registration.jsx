@@ -3,13 +3,16 @@ import { useForm } from "react-hook-form";
 import { useContext } from 'react';
 import { authContext } from '../AuthProvider/AuthProvider';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-
+import Swal from "sweetalert2";
 const Registration = () => {
     const  [success, setSuccess] =useState('')
     const  [error, setError] =useState('')
-    const {createUser} =useContext(authContext)
+  const { createUser } = useContext(authContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
      const {
        register,
        handleSubmit,
@@ -23,7 +26,8 @@ const Registration = () => {
          createUser(email, password)
              .then(result => {
                  const logUser = result.user;
-                 setSuccess('User Has been Created successfully')
+               Swal.fire("User Has been Create Successfully");
+               navigate(from, { replace: true });
              }).catch(error => {
              setError(error)
          }).catch()
