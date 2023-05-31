@@ -5,8 +5,11 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../AuthProvider/AuthProvider';
 import imglogo from '../../assets/others/profile.png'
+import useCart from "../../hooks/useCart";
 const Navbar = () => {
   const { user, logOut, loading } = useContext(authContext);
+  const [cart] = useCart();
+  console.log(cart)
   if (loading) {
     return <p>Loading.........</p>
   }
@@ -53,7 +56,7 @@ console.log(user)
         <li className='items-center'>
           <button className="btn gap-4">
             <FaShoppingCart></FaShoppingCart>
-            <div className="badge badge-secondary">+0</div>
+            <div className="badge badge-secondary"> { cart.length || 0 }</div>
           </button>
         </li>
       </>

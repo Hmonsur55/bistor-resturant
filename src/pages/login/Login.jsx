@@ -118,7 +118,7 @@ const Login = () => {
 
             <input
               className="btn btn-accent"
-              disabled={disabled}
+              disabled={false}
               value="Sign in"
               type="submit"
             />
