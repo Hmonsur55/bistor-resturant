@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Secrate from "../components/Secrate";
+import Dashboard from "../layout/Dashboard";
 import Main from "../layout/Main";
+import MyCart from "../pages/Dashboard/MyCart/MyCart";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/login/Login";
 import Menu from "../pages/Menu/Menu";
@@ -43,4 +45,14 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: 'mycarts',
+        element: <MyCart></MyCart>
+      }
+    ]
+  }
 ]);

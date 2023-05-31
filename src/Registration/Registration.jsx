@@ -11,8 +11,7 @@ const Registration = () => {
     const  [error, setError] =useState('')
   const { createUser, updateProfileUser } = useContext(authContext);
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  
      const {
        register,
        handleSubmit,
@@ -26,6 +25,7 @@ const Registration = () => {
          createUser(email, password)
              .then(result => {
                const logUser = result.user;
+               navigate('/')
                updateProfileUser(data.name, data.photo)
                  .then(() => {
                    Swal.fire("User Has been Create Successfully");

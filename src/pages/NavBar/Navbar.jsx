@@ -54,10 +54,10 @@ console.log(user)
           )}
         </li>
         <li className='items-center'>
-          <button className="btn gap-4">
+          <Link to='/dashboard/mycarts' className="btn gap-4">
             <FaShoppingCart></FaShoppingCart>
             <div className="badge badge-secondary"> { cart.length || 0 }</div>
-          </button>
+          </Link>
         </li>
       </>
     );
