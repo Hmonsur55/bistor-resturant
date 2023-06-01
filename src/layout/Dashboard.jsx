@@ -1,8 +1,10 @@
 
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { FaHome,FaCalendar, FaWallet, FaShoppingCart,FaCalendarDay, FaStar } from "react-icons/fa";
+import useCart from '../hooks/useCart';
 
 const Dashboard = () => {
+  const [cart] = useCart()
     return (
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -50,12 +52,13 @@ const Dashboard = () => {
             </li>
             <li>
               <NavLink
-                to="/#"
+                to="/dashboard/mycarts"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
                 <FaShoppingCart></FaShoppingCart> My Carts
+                <span className="badge badge-secondary"> {cart.length || 0}</span>
               </NavLink>
             </li>
             <li>
@@ -76,6 +79,48 @@ const Dashboard = () => {
                 }
               >
                 <FaCalendarDay></FaCalendarDay> my booking
+              </NavLink>
+            </li>
+            <div className="divider"></div>
+            <li>
+              <NavLink
+                to="/#"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <FaCalendarDay></FaCalendarDay> Home
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/#"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <FaCalendarDay></FaCalendarDay> Menu
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/#"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <FaCalendarDay></FaCalendarDay> Shop
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/#"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <FaCalendarDay></FaCalendarDay> Contact
               </NavLink>
             </li>
           </ul>
