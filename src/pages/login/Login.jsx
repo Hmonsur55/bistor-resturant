@@ -15,6 +15,7 @@ import { useContext } from "react";
 import { authContext } from "../../AuthProvider/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import SocialLogin from "./SocialLogin";
 const Login = () => {
     const { signIn, googleSignIn } = useContext(authContext);
      const [success, setSuccess] = useState("");
@@ -60,16 +61,7 @@ const Login = () => {
         }
   };
 
-  const googleLogin = () => {
-    googleSignIn()
-      .then((result) => {
-        const looginUser = result.user;
-         navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  };
+ 
   return (
     <section
       className="h-screen flex items-center"
@@ -128,9 +120,7 @@ const Login = () => {
           <p>
             Do not Have Account <Link to="/register">Register</Link>
           </p>
-          <button onClick={googleLogin} className="btn btn-accent">
-            google
-          </button>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from "sweetalert2";
+import SocialLogin from '../pages/login/SocialLogin';
 const Registration = () => {
     const  [success, setSuccess] =useState('')
     const  [error, setError] =useState('')
@@ -117,6 +118,7 @@ const Registration = () => {
             <p>
               Already Have an Account <Link to="/login">Login</Link>
             </p>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </section>
