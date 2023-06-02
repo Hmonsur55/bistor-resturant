@@ -25,10 +25,23 @@ const Registration = () => {
          createUser(email, password)
              .then(result => {
                const logUser = result.user;
-               navigate('/')
                updateProfileUser(data.name, data.photo)
                  .then(() => {
-                   Swal.fire("User Has been Create Successfully");
+                   const userDetails = { name: data.name, email:data.email}
+                   fetch(`http://localhost:5000/users`, {
+                     method: 'POST',
+                     headers: {
+                       'content-type' : 'application/json'
+                     },
+                     body : JSON.stringify(userDetails)
+                   })
+                     .then(res => res.json())
+                     .then(data => {
+                       if (data.insertedId) {
+                         Swal.fire("User Has been Create Successfully");
+                       }
+                       navigate("/");
+                     });
                  })
                  .catch((error) => {
                    console.log(error)
