@@ -21,7 +21,7 @@ const PopularMenu = () => {
     //         })
     // }, [])
     
-    console.log(menu)
+    
     return (
       <section className="max-w-screen-xl mx-auto mb-6">
         <SectionTitle

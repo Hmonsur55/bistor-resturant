@@ -9,11 +9,11 @@ import useCart from "../../hooks/useCart";
 const Navbar = () => {
   const { user, logOut, loading } = useContext(authContext);
   const [cart] = useCart();
-  console.log(cart)
+  
   if (loading) {
     return <p>Loading.........</p>
   }
-console.log(user)
+
   const handleLogout = () => {
    logOut()
      .then(() => {
